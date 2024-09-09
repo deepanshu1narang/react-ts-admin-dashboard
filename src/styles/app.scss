@@ -1,0 +1,150 @@
+@use "_app" as app;
+// @use "mixins";
+// here all mixins will be in the single file only... so we'll better import it bcoz no conflicts will be there
+@import "_mixins";
+@import "_dashboard";
+@import "_products";
+@import "_charts";
+@import "_clock";
+@import "_dashboardapp";
+// always keep media queries at last so that the styles written in them don't get override
+@import "_mediaQuery";
+
+:root {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.green {
+    @extend %green;
+}
+
+.red {
+    @extend %red;
+}
+
+.purple {
+    @extend %purple;
+}
+
+.app {
+    @include flex(row, space-between, center, 0.5rem);
+}
+
+.adminContainer {
+    @include grid(1fr 4fr, 2rem);
+    height: 100vh;
+    background-color: rgb(247, 247, 247);
+
+    .time {
+        position: fixed;
+        bottom: 0;
+        right: 1.5rem;
+        // border: 1px solid black;
+        background-color: rgba(255, 255, 255, 0.562);
+        z-index: 0;
+    }
+
+    >aside {
+        width: 100%;
+        background-color: white;
+        padding: 1rem;
+        z-index: 10;
+        overflow-y: auto;
+        // height: fit-content;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        >div {
+            margin: 2rem 1rem;
+
+            >h5 {
+                @include heading(0.125rem);
+                opacity: 0.8;
+                margin: 1rem 0;
+            }
+
+            >ul {
+                @include flex(column, unset, unset, 0.5rem);
+                list-style: none;
+
+                li {
+                    padding: 0.5rem 1rem;
+                    border-radius: 0.625rem;
+
+                    a {
+                        color: rgba(0, 0, 0, 0.825);
+                        @include flex(row, unset);
+                    }
+                }
+            }
+        }
+    }
+}
+
+#hamburger {
+    display: grid;
+    place-items: center;
+    @include square(3rem, 50%);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    font-size: 2rem;
+    background-color: white;
+    z-index: 9;
+}
+
+#close-sidebar {
+    width: 80%;
+    margin: 1rem auto;
+    display: block;
+    padding: 0.75rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: rgb(168, 2, 2);
+    color: white;
+    border-radius: 10px;
+}
+
+.loader {
+    width: 100%;
+    height: 100vh;
+    @include flex;
+
+    >div {
+        @include square(10rem, 50%);
+        border-top: 1rem solid rgb(43, 43, 43);
+        border-left: 1rem solid rgb(43, 43, 43);
+        border-right: 1rem solid #ffffff;
+        border-bottom: 1rem solid #ffffff;
+        animation: loading-animation 0.5s linear infinite;
+    }
+}
+
+@keyframes loading-animation {
+    to {
+        transform: rotateZ(360deg);
+    }
+}

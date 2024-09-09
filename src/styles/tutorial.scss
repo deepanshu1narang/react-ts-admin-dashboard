@@ -1,0 +1,100 @@
+// these variables can't be used anywhere else right... we'lll create partials so that we can reuse these variables
+// importing from partials
+// @import "_colors"; /// just giving name is enough
+// one more method to import so that they don't override if i umport from 2 partials
+@use "_colors" as colors;
+@use "_colors2" as colors2;
+
+
+// local variables
+$color1: rgb(225, 225, 74);
+$color2: rgb(23, 23, 23);
+$color3: rgba(215, 204, 25, 0.7);
+$colors: $color1, $color2, $color3; /// array  bbut without []
+$large: 50rem;
+
+body{
+    background-color: $color2;
+    color: $color1;
+    border: 5px solid nth($colors, $n: 1); //array counting in css starts from 1 (1st arg is array and 2nd is element)
+}
+
+
+
+// nesting
+.productCard{
+    max-width: 30rem;
+    margin-left: 1rem;
+    padding: 0.5rem;
+    // background-color: pink;
+    background-color: colors.$pink;
+    > a{
+        // color: red;
+        color: colors.$red;
+        display: block;
+    }
+    h2{
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        color: blue;
+        background-color: colors2.$blue;
+    }
+}
+
+button{
+    background-color: colors2.$blue !important;
+    padding: 1rem 2rem;
+    border: none;
+    cursor: pointer;
+}
+
+// now I want to give same properties  as of button to p.buttonAlike
+p.buttonAlike {
+    @extend button
+}
+
+
+// this will make just a template not a real class ....... to use class as a variable/template
+%custom{
+    color: colors2.$pink;
+    font-size: larger;
+}
+
+
+// here if I check again I need to write background-color (or same properties with different values separately...
+// but no..... >>> we'll use sass mixins .... kinda fucnitons
+
+// declaration of mixin
+// 2nd variable I've given default value
+@mixin customStyleFunc($variable, $variable2: gold){
+    background-color: $variable;
+    padding: 1rem 2rem;
+    border: 4px dotted $variable2;
+    cursor: cell;
+}
+
+.otherP1{
+    @extend %custom;
+    background-color: green;
+    width: 10rem*20; // can be given with variable too
+
+    &:hover{
+        opacity: 0.7;
+    }
+}
+// usage of mixin
+.otherP2{
+    @include customStyleFunc(colors.$blue, colors2.$blue);
+    width: $large - 25rem;
+}
+.otherP3{
+    @include customStyleFunc(colors.$red, colors2.$red);
+    // @extend %custom;
+}
+.otherP4{
+    @include customStyleFunc(colors.$pink);
+    // @extend %custom;
+}
+
+.someTest{
+    @extend %red;
+}

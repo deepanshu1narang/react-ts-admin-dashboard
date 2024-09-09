@@ -1,0 +1,19 @@
+// this is a partial
+// partial is always named like this.... ie starts with _
+
+$red: rgb(246, 113, 113);
+$blue: rgb(74, 74, 201);
+$pink: rgb(255, 144, 162);
+
+%red{
+    color: red;
+}
+
+%purple{
+    color: rgb(47, 0, 255);
+}
+
+%green{
+    color: rgb(0, 195, 0);
+}
+// these will be exported automatically

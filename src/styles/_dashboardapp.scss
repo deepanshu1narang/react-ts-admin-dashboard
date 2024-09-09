@@ -1,0 +1,160 @@
+.dashboard-app-container {
+    background-color: white;
+    padding: 4rem;
+
+    >section {
+        @include flex(column, center, center, 2rem);
+        height: 100%;
+
+        // plz complete this
+        .stopwatch {
+            @include grid(1fr, 1rem, 1fr 1fr 5fr);
+            width: 25%;
+            align-content: space-evenly;
+            // justify-content: center;
+
+            h3,
+            .buttons-group {
+                @include flex;
+            }
+
+            h3 {
+                @include square(10rem, 100%);
+                border: 0.5rem solid black;
+                margin: auto;
+            }
+
+            .buttons-group {
+                button {
+                    padding: 1rem 2rem;
+                    border: none;
+                    cursor: pointer;
+                    color: white;
+                    background-color: rgb(0, 98, 255);
+                    font-weight: 700;
+                    border-radius: 10px;
+
+                    &:disabled {
+                        opacity: 0.2;
+                        cursor: auto;
+                    }
+                }
+            }
+
+            .laps {
+                border: 1px solid black;
+                height: 15rem;
+                overflow-y: auto;
+                @include flex(column, flex-start, center);
+                padding: 1rem;
+            }
+
+            .laps-empty {
+                overflow-y: auto;
+                height: 15rem;
+                @include flex(column, flex-start, center);
+                padding: 1rem;
+                border: 1px transparent;
+            }
+        }
+
+        .toss-coin {
+            margin: 2rem;
+            // margin-left: auto;
+            @include square(15rem);
+            position: relative;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transition: all 0.5s;
+
+            >div {
+                border-radius: 50%;
+                @include square(100%);
+                position: absolute;
+                display: grid;
+                place-items: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+                backface-visibility: hidden;
+                filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.521));
+
+                &:first-of-type {
+                    background-image: url("../assets/images/heads.png");
+                }
+
+                &:last-of-type {
+                    background-image: url("../assets/images/tails.png");
+                    transform: rotateY(-180deg);
+                }
+            }
+        }
+
+        .coupon-form {
+            @include grid(2r 1fr, 2rem);
+            max-width: 30rem;
+            width: 100%;
+
+            >input {
+                padding: 1rem;
+                border: 1px solid rgba (0, 0, 0, 0.359);
+                outline: none;
+                border-radius: 5px;
+            }
+
+            >fieldset {
+                padding: 1rem;
+                border: 1px solid rgba(0, 0, 0, 0.359);
+                @include flex(row, space-around, center, 0);
+                flex-wrap: wrap;
+                grid-column: 1/3;
+
+                span {
+
+                    span {
+                        font-size: 1.1rem;
+                        font-weight: 300;
+                        margin-inline-start: 0.25rem;
+                        margin-inline-end: 1rem;
+                    }
+                }
+            }
+
+            >button {
+                font-weight: 700;
+                font-size: 1.1rem;
+                width: 100%;
+                padding: 1rem;
+                border: none;
+                color: white;
+                cursor: pointer;
+                margin: 2rem 0;
+                border-radius: 0.625rem;
+                background-color: rgb(0, 98, 255);
+                grid-column: 1/3;
+            }
+        }
+
+        code {
+            position: relative;
+            font-size: 1.2rem;
+            letter-spacing: 0.125rem;
+            cursor: pointer;
+
+            &:hover>span {
+                opacity: 1;
+            }
+
+            >span {
+                opacity: 0;
+                @include square(100%, 0.3125rem);
+                position: absolute;
+                top: 0;
+                left: 0;
+                background-color: rgb(15, 15, 15);
+                color: white;
+                font-size: 0.8rem;
+                @include flex;
+            }
+        }
+    }
+}
