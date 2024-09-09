@@ -1,7 +1,8 @@
 import { RiDashboardFill, RiShoppingBag3Fill, RiCoupon3Fill } from "react-icons/ri";
 import { AiFillFileText } from "react-icons/ai";
 import { IoIosPeople } from "react-icons/io";
-import { FaChartBar, FaChartLine, FaChartPie, FaStopwatch, FaGamepad } from "react-icons/fa";
+import { FaChartBar, FaChartLine, FaChartPie, FaGamepad } from "react-icons/fa";
+// import { FaStopwatch } from "react-icons/fa";
 import AsideDiv from "../components/AsideDiv";
 import { useLocation } from "react-router-dom";
 import { LiProps } from "../components/Li";
