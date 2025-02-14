@@ -1,3 +1,4 @@
+import React from "react";
 import { HiTrendingDown, HiTrendingUp } from "react-icons/hi";
 
 interface WidgetItemProps {
@@ -8,7 +9,7 @@ interface WidgetItemProps {
   amount?: boolean;
 }
 
-const WidgetItem = ({ heading, value, percent, color, amount = false }: WidgetItemProps) => {
+const WidgetItem: React.FC<WidgetItemProps> = ({ heading, value, percent, color, amount = false }: WidgetItemProps) => {
   return (
     <article className="widget">
       <div className="widgetInfo">
